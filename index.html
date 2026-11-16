@@ -16,13 +16,16 @@
   --sofie:#2e6f40; --sofie-ink:#256035; --sofie-soft:#e8f2eb; --tint:#f3f5f7;
   --m-sofie:#2e6f40; --m-bc:#959fa0; --m-iqlplain:#e8685a; --m-gciql:#306998; --m-td3bc:#f48fb1;
   --video:#0c0e11; --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --new:#0000ff; --new-soft:#eff1ff; --new-line:#b3bcff;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#111418; --surface:#171b20; --soft:#1b2026; --ink:#e8ebef; --ink2:#cfd5dc; --muted:#a0a8b2; --faint:#737b86; --line:#2a3038;
-  --sofie:#5fb57a; --sofie-ink:#7cc793; --sofie-soft:#15261b; --tint:#1b2027; --m-sofie:#5fb57a; --m-gciql:#5b93c7}}
+  --sofie:#5fb57a; --sofie-ink:#7cc793; --sofie-soft:#15261b; --tint:#1b2027; --m-sofie:#5fb57a; --m-gciql:#5b93c7;
+  --new:#93a5ff; --new-soft:#151a36; --new-line:#34407f}}
 :root[data-theme="dark"]{
   --bg:#111418; --surface:#171b20; --soft:#1b2026; --ink:#e8ebef; --ink2:#cfd5dc; --muted:#a0a8b2; --faint:#737b86; --line:#2a3038;
-  --sofie:#5fb57a; --sofie-ink:#7cc793; --sofie-soft:#15261b; --tint:#1b2027; --m-sofie:#5fb57a; --m-gciql:#5b93c7}
+  --sofie:#5fb57a; --sofie-ink:#7cc793; --sofie-soft:#15261b; --tint:#1b2027; --m-sofie:#5fb57a; --m-gciql:#5b93c7;
+  --new:#93a5ff; --new-soft:#151a36; --new-line:#34407f}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:56px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -59,6 +62,16 @@ h1{font-size:clamp(30px,4.2vw,44px);font-weight:600;line-height:1.18;max-width:3
 .tldr b{color:var(--ink)}
 
 .teaser{gap:12px}
+.course{gap:14px;background:var(--new-soft);border:1px solid var(--new-line);border-radius:12px;padding:24px 18px 20px;color:var(--new)}
+.course .kicker,.course h2,.course .caption,.course .caption b{color:var(--new)}
+.course-route{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 0;font-size:14.5px;color:var(--new)}
+.course-route li+li::before{content:"→";margin-inline:10px}
+.course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.course-cell figcaption{justify-content:center;font-size:14.5px;color:var(--new)}
+.course-cell figcaption b{color:var(--new)}
+.course-note{font-size:13.5px;text-align:center;color:var(--new);margin-top:-6px}
+.topnav a.new:not(.brand){color:var(--new);font-weight:600}
+@media (max-width:700px){.course-grid{grid-template-columns:1fr}}
 .teaser-grid{display:grid;grid-template-columns:30px repeat(4,minmax(0,1fr));gap:6px;align-items:center}
 .tg-col{font-size:14px;font-weight:600;color:var(--muted);text-align:center;padding-bottom:2px}
 .tg-row{font-size:14px;font-weight:700;color:var(--muted)}
@@ -184,7 +197,7 @@ footer{color:var(--faint);font-size:13.5px;border-top:1px solid var(--line);padd
 </style>
 </head>
 <body>
-<nav class="topnav" aria-label="Sections"><div class="in"><a class="brand" href="#top">SOFIE</a><a href="#abs">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#found">One policy for all</a><a href="#terrain">Per terrain</a><a href="#robot">Per robot</a><a href="#segments">Segments</a><a href="#finetune">Fine-tuning</a><a href="#cite">BibTeX</a></div></nav>
+<nav class="topnav" aria-label="Sections"><div class="in"><a class="brand" href="#top">SOFIE</a><a class="new" href="#course">Course</a><a href="#abs">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#found">One policy for all</a><a href="#terrain">Per terrain</a><a href="#robot">Per robot</a><a href="#segments">Segments</a><a href="#finetune">Fine-tuning</a><a href="#cite">BibTeX</a></div></nav>
 <main id="top">
 <header class="hero">
   <p class="acronym">SOFIE &middot; SEGMENT-LEVEL OFFLINE IMITATION OF DIVERSE EXPERTS</p>
@@ -195,6 +208,18 @@ footer{color:var(--faint);font-size:13.5px;border-top:1px solid var(--line);padd
   undertrained policies. It weights whole footsteps by their advantage, so one policy walks three humanoids over stepping stones,
   stairs and rough ground where behavior cloning copies the mistakes.</p>
 </header>
+
+<section class="course" id="course" aria-labelledby="h-course">
+  <p class="kicker">New result</p>
+  <h2 id="h-course">One run across stepping stones, stairs and rough ground</h2>
+  <ol class="course-route" aria-label="The course"><li>stepping stones</li><li>stairs down</li><li>stairs up</li><li>rough ground</li></ol>
+  <div class="course-grid"><figure class="course-cell"><video class="auto" muted loop playsinline controls preload="none" data-src="videos/course/m3.mp4" poster="posters/course/m3.jpg" aria-label="SOFIE, M3: stepping stones, stairs and rough ground in one run"></video><figcaption><b>M3</b><span>50 s &middot; one run &middot; no fall</span></figcaption></figure><figure class="course-cell"><video class="auto" muted loop playsinline controls preload="none" data-src="videos/course/g1.mp4" poster="posters/course/g1.jpg" aria-label="SOFIE, G1: stepping stones, stairs and rough ground in one run"></video><figcaption><b>G1</b><span>34 s &middot; one run &middot; no fall</span></figcaption></figure></div>
+  <p class="caption"><b>One SOFIE policy per robot, one uninterrupted run.</b> Each robot crosses the stepping stones, walks down
+  and up the stairs and continues over rough ground without a fall. The policy has 5M parameters, is pretrained offline with
+  SOFIE and then fine-tuned online with a sparse reward. The course lines up the three terrain types with the stone spacing,
+  step height and roughness of the paper's evaluation level. Shown in real time; dots mark the height scan the policy reads.</p>
+  <p class="course-note">New since the submission, marked in blue as in the revised paper.</p>
+</section>
 
 <section class="teaser" aria-label="One SOFIE policy on twelve robot-terrain pairs">
   <div class="teaser-grid"><div class="tg-corner"></div><div class="tg-col">Stepping stones</div><div class="tg-col">Stairs up</div><div class="tg-col">Stairs down</div><div class="tg-col">Rough ground</div><div class="tg-row">G1</div><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/g1_stones.mp4" poster="posters/teaser/g1_stones.jpg" aria-label="SOFIE, G1 on stepping stones"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/g1_stairup.mp4" poster="posters/teaser/g1_stairup.jpg" aria-label="SOFIE, G1 on stairs up"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/g1_stairdown.mp4" poster="posters/teaser/g1_stairdown.jpg" aria-label="SOFIE, G1 on stairs down"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/g1_rough.mp4" poster="posters/teaser/g1_rough.jpg" aria-label="SOFIE, G1 on rough ground"></video></figure><div class="tg-row">H1</div><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/h12_stones.mp4" poster="posters/teaser/h12_stones.jpg" aria-label="SOFIE, H1 on stepping stones"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/h12_stairup.mp4" poster="posters/teaser/h12_stairup.jpg" aria-label="SOFIE, H1 on stairs up"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/h12_stairdown.mp4" poster="posters/teaser/h12_stairdown.jpg" aria-label="SOFIE, H1 on stairs down"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/h12_rough.mp4" poster="posters/teaser/h12_rough.jpg" aria-label="SOFIE, H1 on rough ground"></video></figure><div class="tg-row">M3</div><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/m3_stones.mp4" poster="posters/teaser/m3_stones.jpg" aria-label="SOFIE, M3 on stepping stones"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/m3_stairup.mp4" poster="posters/teaser/m3_stairup.jpg" aria-label="SOFIE, M3 on stairs up"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/m3_stairdown.mp4" poster="posters/teaser/m3_stairdown.jpg" aria-label="SOFIE, M3 on stairs down"></video></figure><figure class="tg-cell"><video class="auto" muted loop playsinline preload="none" data-src="videos/teaser/m3_rough.mp4" poster="posters/teaser/m3_rough.jpg" aria-label="SOFIE, M3 on rough ground"></video></figure></div>
